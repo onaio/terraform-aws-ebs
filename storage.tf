@@ -39,7 +39,7 @@ resource "null_resource" "host_attachment_commands" {
       "sudo mkdir -p ${var.vms_mount_point}",
       "sudo mount ${var.vms_host_device_name} ${var.vms_mount_point}",
       "sudo sed -i '/.*${replace(var.vms_mount_point, "/", "\\/")}.*/d' /etc/fstab",
-      "sudo bash -c 'uuid=$(lsblk -n -o UUID ${var.vms_host_device_name}) && sed -i \"/$uuid/d\" /etc/fstab",
+      "sudo bash -c 'uuid=$(lsblk -n -o UUID ${var.vms_host_device_name}) && sed -i \"/$uuid/d\" /etc/fstab'",
       "sudo bash -c 'uuid=$(lsblk -n -o UUID ${var.vms_host_device_name}) && echo \"UUID=$uuid\t${var.vms_mount_point}\t${var.vms_filesystem_type}\t${var.vms_fstab_mount_options}\" >> /etc/fstab'"
     ]
 
